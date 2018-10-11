@@ -1,0 +1,71 @@
+{
+ "qualityModels": [
+  {
+   "goals": [
+    {
+     "attributes": [
+      {
+       "description": "",
+       "factoids": [],
+       "metrics": [
+        {
+         "data_implementation": "GitEnrich",
+         "data_params": null,
+         "data_source_type": null,
+         "description": "",
+         "name": "numberOfCommits",
+         "thresholds": "9,90,900,9000,9900"
+        },
+        {
+         "data_implementation": "GitHubEnrich",
+         "data_params": null,
+         "data_source_type": null,
+         "description": "",
+         "name": "numberOfIssues",
+         "thresholds": "9,90,900,990,999"
+        }
+       ],
+       "name": "Vitality",
+       "subattributes": []
+      }
+     ],
+     "description": "",
+     "name": "Product",
+     "subgoals": []
+    },
+    {
+     "attributes": [
+      {
+       "description": "",
+       "factoids": [],
+       "metrics": [
+        {
+         "data_implementation": null,
+         "data_params": null,
+         "data_source_type": null,
+         "description": "",
+         "name": "numberOfIssuesAttended",
+         "thresholds": null
+        },
+        {
+         "data_implementation": "GitHubEnrich",
+         "data_params": "{\"filter\": {\"term\": {\"state\": \"closed\"}}}",
+         "data_source_type": null,
+         "description": "",
+         "name": "numberOfIssuesClosed",
+         "thresholds": "5,10,50,100,200"
+        }
+       ],
+       "name": "Attention",
+       "subattributes": []
+      }
+     ],
+     "description": "",
+     "name": "Community",
+     "subgoals": []
+    }
+   ],
+   "name": "Developer Quality Model"
+  }
+ ]
+}

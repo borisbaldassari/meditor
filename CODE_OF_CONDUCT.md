@@ -1,4 +1,4 @@
-# Contributor Covenant Code of Conduct
+# Prosoul Contributor Code of Conduct
 
 ## Our Pledge
 

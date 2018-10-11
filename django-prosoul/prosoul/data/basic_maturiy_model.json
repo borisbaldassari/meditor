@@ -1,0 +1,103 @@
+{
+ "qualityModels": [
+  {
+   "name": "Basic Maturity Model",
+   "goals": [
+    {
+     "attributes": [
+      {
+       "metrics": [
+        {
+         "data_source_type": null,
+         "thresholds": null,
+         "name": "Bus factor",
+         "data": null,
+         "description": ""
+        },
+        {
+         "data_source_type": null,
+         "thresholds": null,
+         "name": "Gender Diversity",
+         "data": null,
+         "description": ""
+        },
+        {
+         "data_source_type": null,
+         "thresholds": null,
+         "name": "Organizations Diversity",
+         "data": null,
+         "description": ""
+        },
+        {
+         "data_source_type": null,
+         "thresholds": null,
+         "name": "Commits by developer",
+         "data": null,
+         "description": ""
+        }
+       ],
+       "subattributes": [],
+       "name": "Community",
+       "factoids": [],
+       "description": ""
+      },
+      {
+       "metrics": [
+        {
+         "data_source_type": "git",
+         "thresholds": null,
+         "name": "slope of the commits trend",
+         "data": null,
+         "description": ""
+        },
+        {
+         "data_source_type": "git",
+         "thresholds": null,
+         "name": "slope of the files trend",
+         "data": null,
+         "description": ""
+        }
+       ],
+       "subattributes": [],
+       "name": "Activity",
+       "factoids": [],
+       "description": ""
+      },
+      {
+       "metrics": [
+        {
+         "data_source_type": "git",
+         "thresholds": null,
+         "name": "Lines per commit",
+         "data": null,
+         "description": ""
+        },
+        {
+         "data_source_type": "git",
+         "thresholds": null,
+         "name": "Merge vs Normal commits",
+         "data": null,
+         "description": ""
+        },
+        {
+         "data_source_type": "git",
+         "thresholds": null,
+         "name": "Bugs in commits logs",
+         "data": null,
+         "description": ""
+        }
+       ],
+       "subattributes": [],
+       "name": "Process",
+       "factoids": [],
+       "description": ""
+      }
+     ],
+     "subgoals": [],
+     "name": "Maturity",
+     "description": ""
+    }
+   ]
+  }
+ ]
+}

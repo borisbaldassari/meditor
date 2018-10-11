@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-sm-6">
+    <h2>Goals</h2>
+  </div>
+  <div class="col-sm-6">
+    <div class="button-group">
+      <button type="submit" class="btn btn-primary btn-sm" id="add-goal-btn" data-toggle="modal" data-target="#addGoalModal">
+        <i class="fa fa-plus"></i> Add<span class="sr-only"> goal</span>
+      </button>
+      <button type="submit" class="btn btn-primary btn-sm" id="edit-goal-btn" data-toggle="modal" data-target="#addGoalModal">
+        <i class="fa fa-pencil"></i> Edit<span class="sr-only"> goal</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <form action="./select_goal" method="post">
+      <fieldset id="select-goal">
+        {% csrf_token %}
+        {% for field in goals_form.state_fields %}
+        {{ field }}
+        {% endfor %}
+        <div class="form-group form-group-lg">
+          {{ goals_form.id }}
+          {{ goals_form.id.errors }}
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>

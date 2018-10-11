@@ -1,9 +1,159 @@
-# meditor
-Model Editor: Create software quality models to organize metrics and other data.
+# Prosoul [![Build Status](https://travis-ci.org/Bitergia/prosoul.svg?branch=master)](https://travis-ci.org/Bitergia/prosoul)
 
-The goal of this project is to create a web editor and viewer for software quality models that are used to show metrics in a meaning way. Also, importers and exporters for the different quality models used in the industry will be implemented so they can be used as models or evolved for the creation of new quality models.
+**Prosoul** is a software quality models manager to create, import/export, view and edit
+models.
+
+
+## Description
+
+The goal of this project is to create a web editor and viewer for [software quality models](https://github.com/borisbaldassari/se-quality-models) that are used to show metrics in a meaning way. Also, importers and exporters for the different quality models used in the industry will be implemented so they can be used as models or evolved for the creation of new quality models.
 
 In the initial version the metrics supported will be the [CROSSMINER ones](https://github.com/crossminer/crossminer/tree/dev/web-dashboards/ossmeter-metrics).
 
-Based on the models, visualizations for metrics are generated. In the inital version
+Based on the models, visualizations and assessment for the projects are generated. In the inital version
 Kibana dashoards will be created using [GrimoireLab](http://grimoirelab.github.io/).
+
+The final goal is to have a tool for "Automatic Project Assessment and Visualization based on Evolved Quality Models".
+
+The original name for this project was Meditor but is was chaged to Prosoul because meditor already was used in pip.
+
+## Source code and contributions
+
+All the source code is available in the [Prosoul GitHub repository](https://github.com/Bitergia/prosoul). Please, upload pull requests if you have proposals to change the source code, and open an issue if you want to report a bug, ask for a new feature, or just comment something.
+
+The [code of conduct](CODE_OF_CONDUCT.md) must be followed in all contributions
+to the project.
+
+## Execution
+
+**Prosoul** is a Django application. The recommended way to execute it is inside a python virtual environment.
+
+Change VENV_DIR with the path to the folder in which you want to store the virtual environment.
+
+### From source code repository
+
+This is the recommend way if you want to contribute to the development of ProSoul.
+
+```
+git clone https://github.com/Bitergia/prosoul.git
+cd prosoul/django-prosoul
+prosoul/django-prosoul $ mkdir -p VENV_DIR
+prosoul/django-prosoul $ python3 -m venv VENV_DIR
+prosoul/django-prosoul $ source VENV_DIR/bin/activate
+prosoul/django-prosoul $ pip3 install -r requirements.txt
+```
+
+And to start the Django application:
+
+```
+prosoul/django-prosoul $ python3 manage.py makemigrations
+prosoul/django-prosoul $ python3 manage.py migrate
+prosoul/django-prosoul $ python3 manage.py runserver
+```
+
+By default the applicacion will be accesible in: http://127.0.0.1:8000/
+
+
+### From pip package
+
+There is also a pip package with the Django application. You can just deploy it in a Django site:
+
+```
+mkdir -p VENV_DIR
+python3 -m venv VENV_DIR
+source VENV_DIR/bin/activate
+pip install django
+pip install django-prosoul
+```
+
+and you need to add the application following the normal steps in Django:
+
+```
+django-admin startproject mysite
+cd mysite
+vi mysite/settings.py
+...
+INSTALLED_APPS = [
+    'django.contrib.admin',
+	...
+	'prosoul'
+	]
+
+mysite (venv) $ vi mysite/urls.py
+...
+from django.conf.urls import include, url
+...
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('prosoul/', include('prosoul.urls')),
+]
+mysite (venv) $ python manage.py migrate
+mysite (venv) $ python manage.py runserver
+```
+
+### Using a docker image
+
+A docker image is also available to execute the application:
+
+```
+prosoul/docker $ docker-compose up
+```
+
+## Basic Usage
+
+There is two introductory videos: showing the import and view feature, and howto use the editor for adding a new quality model:
+
+* Import and view of quality models: [prosoul-intro.webm](https://raw.githubusercontent.com/Bitergia/prosoul/master/doc/meditor-intro.webm)
+* Adding a new quality model: [prosoul-editor.webm](https://raw.githubusercontent.com/Bitergia/prosoul/master/doc/meditor-editor.webm)
+* Creating a viz and an assessment based on a quality model: [prosoul-viz-assess.webm](https://raw.githubusercontent.com/Bitergia/prosoul/master/doc/meditor-viz-assess.webm)
+
+## Import / Export
+
+Import and export for quality models can be done using the web interface or
+from the command line:
+
+* Import a model from a OSSMeter JSON file:
+
+```
+prosoul/django-prosoul $ PYTHONPATH=. prosoul/prosoul_import.py -f prosoul/data/ossmeter_qm.json --format ossmeter
+```
+
+* Export a model to a GrimoireLab JSON file:
+
+```
+prosoul/django-prosoul $ PYTHONPATH=. prosoul/prosoul_export.py -f prosoul/data/ossmeter_qm_grimoirelab.json --format grimoirelab -m "Default OSSMETER quality model"
+```
+
+## Requirements
+
+* Python >=3.4
+* setuptools
+* django
+* kidash
+* requests
+* python3-tk
+* matplotlib
+
+## Architecture
+
+A draft diagram for the architecture is:
+
+![](doc/prosoul-arch.png?raw=true)
+
+## Prosoul with CROSSMINER
+
+There is a specific guide for [using prosoul with CROSSMINER](doc/prosoul-crossminer.md) for creating the visualization for a quality model and generating the assessment of the projects with CROSSMINER.
+
+There is a [demo online of prosoul for CROSSMINER](http://prosoul.castalia.camp).
+
+## Prosoul with GrimoireLab
+
+There is a specific guide for [using prosoul with GrimoireLab](doc/prosoul-grimoirelab.md) for creating the visualization for a quality model and generating the assessment of the projects with GrimoireLab.
+
+## ROADMAP
+
+The ROADMAP for Prosoul is based on [GitHub milestones](https://github.com/Bitergia/prosoul/milestones). The current active work is done in the issues related to the current milestone.
+
+## License
+
+Licensed under GNU General Public License (GPL), version 3 or later.

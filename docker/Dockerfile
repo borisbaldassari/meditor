@@ -5,7 +5,7 @@ FROM debian:stretch-slim
 MAINTAINER Alvaro del Castillo <acs@bitergia.com>
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV DEPLOY_USER meditor
+ENV DEPLOY_USER prosoul
 ENV DEPLOY_USER_DIR /home/${DEPLOY_USER}
 
 # Initial user
@@ -20,7 +20,7 @@ RUN apt-get update && \
         python3 \
         python3-pip \
         python3-venv \
-        python3-dev \
+        python3-dev python3-tk \
         unzip curl wget sudo ssh vim \
         && \
     apt-get clean && \
@@ -39,7 +39,13 @@ ENV LC_ALL en_US.UTF-8
 ENV LANG C.UTF-8
 
 # Install pip packages needed
+RUN pip3 install setuptools
 RUN pip3 install django
+RUN pip3 install gunicorn
+RUN pip3 install matplotlib
+RUN pip3 install requests
+RUN pip3 install kidash
+RUN pip3 install djangorestframework
 
 ADD stage ${DEPLOY_USER_DIR}/stage
 RUN chmod 755 ${DEPLOY_USER_DIR}/stage
